@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- Produto -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Produto: " />
+
+    <EditText
+        android:id="@+id/etProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+    <!-- Qtd -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qtd: " />
+
+    <EditText
+        android:id="@+id/etQtd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        />
+
+
+    <!-- Valor -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor: " />
+
+    <EditText
+        android:id="@+id/etValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        />
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Adicionar Produto -->
+        <Button
+            android:onClick="btAdicionarProdutoOnClick"
+            android:text="Adicionar Prod."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <!-- Listar Produtos -->
+        <Button
+            android:onClick="btListarProdutosOnClick"
+            android:text="Listar Prod."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <!-- Iniciar -->
+        <Button
+            android:onClick="btIniciarOnClick"
+            android:text="Iniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
