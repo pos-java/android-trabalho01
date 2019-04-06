@@ -2,6 +2,7 @@ package br.edu.utfpr.trabalhofinal.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -10,7 +11,7 @@ import br.edu.utfpr.trabalhofinal.Model.ListaProduto;
 public class ListaProdutoDAO extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "banco";
     private static final String TABLE_NAME = "listaProduto";
-    private static final int VERSION = 3;
+    private static final int VERSION = 4;
 
     public ListaProdutoDAO(Context c){
         super(c, DATABASE_NAME, null, VERSION);
@@ -34,6 +35,16 @@ public class ListaProdutoDAO extends SQLiteOpenHelper {
         registro.put("descricao", listaProduto.getDescricao() );
 
         db.insert(TABLE_NAME, null, registro);
+    }
+
+    public Cursor listar(){
+
+        SQLiteDatabase banco = this.getWritableDatabase();
+
+        Cursor registros = banco.query( TABLE_NAME, null, null,
+                null, null, null, null, null );
+
+        return registros;
     }
 
 }
