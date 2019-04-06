@@ -11,7 +11,7 @@ import br.edu.utfpr.trabalhofinal.Model.Produto;
 public class ProdutoDAO extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "banco";
     private static final String TABLE_NAME = "produto";
-    private static final int VERSION = 3;
+    private static final int VERSION = 4;
 
     public ProdutoDAO(Context c){
         super(c, DATABASE_NAME, null, VERSION);

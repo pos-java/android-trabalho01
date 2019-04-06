@@ -2,6 +2,7 @@ package br.edu.utfpr.trabalhofinal.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -10,7 +11,7 @@ import br.edu.utfpr.trabalhofinal.Model.ListaProduto;
 public class ListaProdutoDAO extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "banco";
     private static final String TABLE_NAME = "listaProduto";
-    private static final int VERSION = 3;
+    private static final int VERSION = 4;
 
     public ListaProdutoDAO(Context c){
         super(c, DATABASE_NAME, null, VERSION);
@@ -30,10 +31,35 @@ public class ListaProdutoDAO extends SQLiteOpenHelper {
     public void inserir(ListaProduto listaProduto){
         SQLiteDatabase db = this.getWritableDatabase();
 
+        Cursor cursor = this.LoadDescricoes(listaProduto.getDescricao());
+        if (!cursor.moveToFirst()) {
+            ContentValues registro = new ContentValues();
+            registro.put("descricao", listaProduto.getDescricao());
+
+            db.insert(TABLE_NAME, null, registro);
+        }
+
+        /*
         ContentValues registro = new ContentValues();
-        registro.put("descricao", listaProduto.getDescricao() );
+        registro.put("descricao", listaProduto.getDescricao());
 
         db.insert(TABLE_NAME, null, registro);
+        */
+    }
+
+    public Cursor LoadDescricoes(String descricao){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String[] params = new String[] {descricao};
+        return db.query(TABLE_NAME, null, "descricao = ?", params, null, null, null );
+    }
+
+    public Cursor listar(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor registros = db.query(TABLE_NAME, null, null, null, null, null, null);
+
+        return registros;
     }
 
 }
