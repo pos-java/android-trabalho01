@@ -14,11 +14,17 @@
         android:layout_height="wrap_content"
         android:text="Produto: " />
 
+    <!--
     <EditText
         android:id="@+id/etProduto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+     -->
+    <AutoCompleteTextView
+        android:id="@+id/etProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
     <!-- Qtd -->

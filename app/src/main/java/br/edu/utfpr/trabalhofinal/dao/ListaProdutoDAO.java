@@ -31,10 +31,35 @@ public class ListaProdutoDAO extends SQLiteOpenHelper {
     public void inserir(ListaProduto listaProduto){
         SQLiteDatabase db = this.getWritableDatabase();
 
+        Cursor cursor = this.LoadDescricoes(listaProduto.getDescricao());
+        if (!cursor.moveToFirst()) {
+            ContentValues registro = new ContentValues();
+            registro.put("descricao", listaProduto.getDescricao());
+
+            db.insert(TABLE_NAME, null, registro);
+        }
+
+        /*
         ContentValues registro = new ContentValues();
-        registro.put("descricao", listaProduto.getDescricao() );
+        registro.put("descricao", listaProduto.getDescricao());
 
         db.insert(TABLE_NAME, null, registro);
+        */
+    }
+
+    public Cursor LoadDescricoes(String descricao){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String[] params = new String[] {descricao};
+        return db.query(TABLE_NAME, null, "descricao = ?", params, null, null, null );
+    }
+
+    public Cursor listar(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor registros = db.query(TABLE_NAME, null, null, null, null, null, null);
+
+        return registros;
     }
 
     public Cursor listar(){
