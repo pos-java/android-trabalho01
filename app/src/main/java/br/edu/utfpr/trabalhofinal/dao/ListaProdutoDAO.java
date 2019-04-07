@@ -50,8 +50,8 @@ public class ListaProdutoDAO extends SQLiteOpenHelper {
     public Cursor LoadDescricoes(String descricao){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String[] params = new String[] {descricao};
-        return db.query(TABLE_NAME, null, "descricao = ?", params, null, null, null );
+        String[] params = new String[] { "%"+ descricao + "%"  };
+        return db.query(TABLE_NAME, null, "descricao like ?", params, null, null, null );
     }
 
     public Cursor listar(){
@@ -62,14 +62,14 @@ public class ListaProdutoDAO extends SQLiteOpenHelper {
         return registros;
     }
 
-    public Cursor listar(){
-
-        SQLiteDatabase banco = this.getWritableDatabase();
-
-        Cursor registros = banco.query( TABLE_NAME, null, null,
-                null, null, null, null, null );
-
-        return registros;
-    }
+//    public Cursor listar(){
+//
+//        SQLiteDatabase banco = this.getWritableDatabase();
+//
+//        Cursor registros = banco.query( TABLE_NAME, null, null,
+//                null, null, null, null, null );
+//
+//        return registros;
+//    }
 
 }
